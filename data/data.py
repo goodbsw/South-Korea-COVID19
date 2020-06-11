@@ -58,7 +58,7 @@ def return_figures():
         insidetextorientation='radial'
     ))
     
-    layout_one = dict(title_text='COVID Fatality Rate')
+    layout_one = dict(title='COVID Fatality Ratio')
 
     # Pie chart by new COVID cases as of TODAY
     graph_two = []
@@ -73,7 +73,7 @@ def return_figures():
         insidetextorientation='radial'
     ))
     
-    layout_two = dict(title_text='New Cases Ratio')
+    layout_two = dict(title='New Cases Ratio')
     
     # Bar chart showcasing the total cases of COVID-19 by cities
     graph_three = []
@@ -90,7 +90,7 @@ def return_figures():
         )
     )
     
-    layout_three = dict(title_text = 'COVID-19 total cases by cities as of TODAY')
+    layout_three = dict(title = 'COVID-19 total cases by cities as of TODAY')
     
     # Bar chart showcasing the new cases of COVID-19 by cities
     graph_four = []
@@ -117,7 +117,7 @@ def return_figures():
         )
     )
     
-    layout_four = dict(title_text = 'COVID-19 new cases by citis as of TODAY')
+    layout_four = dict(title = 'COVID-19 new cases by citis as of TODAY')
     
     # append all charts
     figures = []
