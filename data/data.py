@@ -59,8 +59,6 @@ def return_figures():
     ))
     
     layout_one = dict(title_text='COVID Fatality Rate')
-    
-    go.Figure(data=graph_one[0], layout=layout_one).show()
 
     # Pie chart by new COVID cases as of TODAY
     graph_two = []
@@ -77,6 +75,55 @@ def return_figures():
     
     layout_two = dict(title_text='New Cases Ratio')
     
-    go.Figure(data=graph_two[0], layout=layout_two).show()
+    # Bar chart showcasing the total cases of COVID-19 by cities
+    graph_three = []
+    
+    city_list = list(data.keys())[3:-1]
+    total_cases = [city_status['totalCase'] for city_status in list(data.values())[3:-1]]
+    
+    graph_three.append(
+        go.Bar(
+            x = city_list,
+            y = total_cases,
+            text = total_cases,
+            textposition = 'auto'
+        )
+    )
+    
+    layout_three = dict(title_text = 'COVID-19 total cases by cities as of TODAY')
+    
+    # Bar chart showcasing the new cases of COVID-19 by cities
+    graph_four = []
+    
+    new_domestic_cases = [city_status['newCcase'] for city_status in list(data.values())[3:-1]]
+    new_overseas_cases = [city_status['newFcase'] for city_status in list(data.values())[3:-1]]
+    
+    graph_four.append(
+        go.Bar(
+            name = 'Domestic',
+            x = city_list,
+            y = new_domestic_cases,
+            text = new_domestic_cases,
+            textposition = 'auto'
+        )
+    )
+    graph_four.append(
+        go.Bar(
+            name = 'Overseas',
+            x = city_list,
+            y = new_overseas_cases,
+            text = new_overseas_cases,
+            textposition = 'auto'
+        )
+    )
+    
+    layout_four = dict(title_text = 'COVID-19 new cases by citis as of TODAY')
+    
+    # append all charts
+    figures = []
+    figures.append(dict(data=graph_one, layout=layout_one))
+    figures.append(dict(data=graph_two, layout=layout_two))
+    figures.append(dict(data=graph_three, layout=layout_three))
+    figures.append(dict(data=graph_four, layout=layout_four))
 
-return_figures()
+    return figures
