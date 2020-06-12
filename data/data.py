@@ -78,8 +78,8 @@ def return_figures():
     # Bar chart showcasing the total cases of COVID-19 by cities
     graph_three = []
     
-    city_list = list(data.keys())[3:-1]
-    total_cases = [city_status['totalCase'] for city_status in list(data.values())[3:-1]]
+    city_list = list(data.keys())[3:]
+    total_cases = [city_status['totalCase'] for city_status in list(data.values())[3:]]
     
     graph_three.append(
         go.Bar(
@@ -95,8 +95,8 @@ def return_figures():
     # Bar chart showcasing the new cases of COVID-19 by cities
     graph_four = []
     
-    new_domestic_cases = [city_status['newCcase'] for city_status in list(data.values())[3:-1]]
-    new_overseas_cases = [city_status['newFcase'] for city_status in list(data.values())[3:-1]]
+    new_domestic_cases = [city_status['newCcase'] for city_status in list(data.values())[3:]]
+    new_overseas_cases = [city_status['newFcase'] for city_status in list(data.values())[3:]]
     
     graph_four.append(
         go.Bar(
