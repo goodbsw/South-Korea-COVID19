@@ -90,7 +90,9 @@ def return_figures():
         )
     )
     
-    layout_three = dict(title = 'COVID-19 total cases by cities as of TODAY')
+    layout_three = dict(title = 'COVID-19 total cases by cities as of TODAY',
+                        xaxis = dict(title = 'City'),
+                        yaxis = dict(title = 'Number of the Confirmed'))
     
     # Bar chart showcasing the new cases of COVID-19 by cities
     graph_four = []
@@ -117,13 +119,55 @@ def return_figures():
         )
     )
     
-    layout_four = dict(title = 'COVID-19 new cases by citis as of TODAY')
+    layout_four = dict(title = 'COVID-19 new cases by citis as of TODAY',
+                       xaxis = dict(title = 'City'),
+                       yaxis = dict(title = 'Number of the New Confirmed'))
     
+    # Line chart with bar chart showcasing daily total and new cases
+    url = 'https://api.covid19api.com/total/dayone/country/south-korea'
+    daily_cases = requests.get(url).json()
+    
+    graph_five = []
+    
+    date = [day['Date'][:10] for day in daily_cases]
+    total_confirmed = [day['Confirmed'] for day in daily_cases]
+    
+    confirmed = 0
+    new_cases = []
+    for case in total_confirmed:
+        if case != 0:
+            new_case = case - confirmed
+            new_cases.append(new_case)
+            confirmed += new_case
+            
+    graph_five.append(
+        go.Scatter(
+            name = 'total confirmed',
+            x = date,
+            y = total_confirmed,
+        )
+    )
+    
+    graph_five.append(
+        go.Bar(
+            name = 'new confirmed',
+            x = date,
+            y = new_cases
+        )
+    )
+    
+    layout_five = dict(title='The current confirmed cases on daily basis',
+                       autosize=False,
+                       width=1200,
+                       xaxis = dict(title = 'Date'),
+                       yaxis = dict(title = 'Number of the Confirmed in Total'))
+            
     # append all charts
     figures = []
     figures.append(dict(data=graph_one, layout=layout_one))
     figures.append(dict(data=graph_two, layout=layout_two))
     figures.append(dict(data=graph_three, layout=layout_three))
     figures.append(dict(data=graph_four, layout=layout_four))
-
+    figures.append(dict(data=graph_five, layout=layout_five))
+    
     return figures
