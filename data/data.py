@@ -36,11 +36,12 @@ def return_figures():
     """
     
     # Pulling data from COVID-19 api
+    api_key = 'e3e95a65b2c8fd2dc471fb6f40aa85c68'
     try:
-        data = requests.get('http://api.corona-19.kr/korea/country/new/').json()
+        data = requests.get(f'http://api.corona-19.kr/korea/country/new/?serviceKey={api_key}').json()
     except:
         print('failed to load data')
-        
+    
     patients_status = data['korea']
     
     # pie chart by COVID fatality
