@@ -19,7 +19,7 @@ There is routes.py file to build api
 
 Results
 ---
-The main findings of the code can be found at the post available [here](https://medium.com/@goodbsw/how-expensive-airbnb-is-in-nyc-e2de8104c60f).
+The main findings of the code can be found at the post available [here](https://medium.com/@goodbsw/the-current-status-of-covid-19-in-south-korea-c5b642e6b689).
 
 Licensing, Authors, Acknowledgements
 ---
